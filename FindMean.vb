@@ -350,12 +350,17 @@ Sub FindMean()
     Set checkSheet = ThisWorkbook.Sheets("Flights_Cleaned")
     On Error GoTo 0
     
-    ' creates a new table
-    Dim flights As Collection
-    Set flights = MakeTable(flights)
-    
-    ' Finds the average
-    Dim average As Collection
-    Set average = FindAverageAndTotal(flights)
+    If checkSheet Is Nothing Then
+        ' error prompt
+        MsgBox "You need to clean your data first"
+    Else
+        ' creates a new table
+        Dim flights As Collection
+        Set flights = MakeTable(flights)
         
+        ' Finds the average
+        Dim average As Collection
+        Set average = FindAverageAndTotal(flights)
+    End If       
+
 End Sub
